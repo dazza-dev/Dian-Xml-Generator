@@ -1,0 +1,18 @@
+[
+    {
+        "code": "1",
+        "name": "Intereses"
+    },
+    {
+        "code": "2",
+        "name": "Gastos por cobrar"
+    },
+    {
+        "code": "3",
+        "name": "Cambio del valor"
+    },
+    {
+        "code": "4",
+        "name": "Otros"
+    }
+]

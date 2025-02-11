@@ -1,0 +1,11 @@
+<cac:{{ node }}>
+    <cbc:LineExtensionAmount currencyID="{{ currency.code }}">{{ totals.line_extension_amount|number_format(2, '.', '') }}</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="{{ currency.code }}">{{ totals.tax_exclusive_amount|number_format(2, '.', '') }}</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="{{ currency.code }}">{{ totals.tax_inclusive_amount|number_format(2, '.', '') }}</cbc:TaxInclusiveAmount>
+    {# Invoices only #}
+    {% if document_type.code == '01' and totals.prepaid_amount > 0 %}
+    <cbc:PrepaidAmount currencyID="{{ currency.code }}">{{ totals.prepaid_amount|number_format(2, '.', '') }}</cbc:PrepaidAmount>
+    {% endif %}
+    {# /Invoices only #}
+    <cbc:PayableAmount currencyID="{{ currency.code }}">{{ totals.payable_amount|number_format(2, '.', '') }}</cbc:PayableAmount>
+</cac:{{ node }}>

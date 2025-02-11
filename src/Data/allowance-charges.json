@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Descuento no condicionado",
+        "code": "00"
+    },
+    {
+        "name": "Descuento condicionado",
+        "code": "01"
+    },
+    {
+        "name": "Recargo no condicionado",
+        "code": "02"
+    },
+    {
+        "name": "Recargo condicionado",
+        "code": "03"
+    }
+]

@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Factura de Venta Nacional Pre-Numerado - Electrónica",
+        "code": "01"
+    },
+    {
+        "name": "Nota Crédito A Factura Electrónica – Electrónica",
+        "code": "91"
+    },
+    {
+        "name": "Factura de Venta - Talonario Pre-Numerado / Papel",
+        "code": "210"
+    },
+    {
+        "name": "Factura de Venta Contingencia FE - Talonario Pre-Numerado / Papel",
+        "code": "215"
+    },
+    {
+        "name": "Factura de Venta Por Computador - Talonario Post-Numerado / Papel",
+        "code": "220"
+    },
+    {
+        "name": "Factura de Venta Sistema POS - Talonario Post-Numerado / Papel",
+        "code": "230"
+    },
+    {
+        "name": "Documento Equivalente Talonario Numerado – Papel",
+        "code": "240"
+    },
+    {
+        "name": "Documento Equivalente Electrónico Talonario Numerado",
+        "code": "250"
+    }
+]

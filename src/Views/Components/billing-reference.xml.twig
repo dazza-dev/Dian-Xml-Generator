@@ -1,0 +1,7 @@
+<cac:BillingReference>
+    <cac:{{ node }}>
+        <cbc:ID>{{ billing_reference.prefix }}{{ billing_reference.number }}</cbc:ID>
+        <cbc:UUID schemeName="{{ billing_reference.document_type.hash_type }}">{{ billing_reference.unique_identifier }}</cbc:UUID>
+        <cbc:IssueDate>{{ billing_reference.issue_date }}</cbc:IssueDate>
+    </cac:{{ node }}>
+</cac:BillingReference>

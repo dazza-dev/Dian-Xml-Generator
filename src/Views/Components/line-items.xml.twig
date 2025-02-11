@@ -1,0 +1,50 @@
+{% for item in line_items %}
+    <cac:{{ node }}>
+        <cbc:ID>{{ loop.index }}</cbc:ID>
+        <cbc:{{ nodeQty }} unitCode="{{ item.unit.code }}">{{ item.quantity|number_format(6, '.', '') }}</cbc:{{ nodeQty }}>
+        <cbc:LineExtensionAmount currencyID="{{ currency.code }}">{{ item.total_amount|number_format(2, '.', '') }}</cbc:LineExtensionAmount>
+        {% if document_type.code != '92' %}
+        <cbc:FreeOfChargeIndicator>{{ item.free_of_charge ? 'true' : 'false' }}</cbc:FreeOfChargeIndicator>
+        {% endif %}
+        {# Commercial Sample - Applies when a product is a gift or commercial sample #}
+        {% if item.free_of_charge %}
+        <cac:PricingReference>
+            <cac:AlternativeConditionPrice>
+                <cbc:PriceAmount currencyID="{{ currency.code }}">{{ item.reference_price.price_amount|number_format(2, '.', '') }}</cbc:PriceAmount>
+                <cbc:PriceTypeCode>{{ item.reference_price.code }}</cbc:PriceTypeCode>
+            </cac:AlternativeConditionPrice>
+        </cac:PricingReference>
+        {% endif %}
+        {# /Commercial Sample #}
+        {# Discounts and charges line #}
+        {% include 'Components/allowance-charges.xml.twig' with {
+            'allowance_charges': item.allowance_charges
+        } %}
+        {# Taxes line #}
+        {% include 'Components/tax-totals.xml.twig' with {
+            'taxes': item.taxes
+        } %}
+        <cac:Item>
+            <cbc:Description>{{ item.name }}</cbc:Description>
+            {% if document_type.code == '01' %}
+            <cac:StandardItemIdentification>
+                <cbc:ID schemeID="{{ item.item_type.code }}" schemeName="{{ item.item_type.name }}" schemeAgencyID="{{ item.item_type.agency_id }}">{{ item.code }}</cbc:ID>
+            </cac:StandardItemIdentification>
+            {% else %}
+            <cac:InformationContentProviderParty>
+                <cac:PowerOfAttorney>
+                    <cac:AgentParty>
+                        <cac:PartyIdentification>
+                            <cbc:ID schemeAgencyID="195" schemeID="3" schemeName="31">{{ company.document_number }}</cbc:ID>
+                        </cac:PartyIdentification>
+                    </cac:AgentParty>
+                </cac:PowerOfAttorney>
+            </cac:InformationContentProviderParty>
+            {% endif %}
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="{{ currency.code }}">{{ item.unit_price|number_format(2, '.', '') }}</cbc:PriceAmount>
+            <cbc:BaseQuantity unitCode="{{ item.unit.code }}">{{ item.quantity|number_format(6, '.', '') }}</cbc:BaseQuantity>
+        </cac:Price>
+    </cac:{{ node }}>
+{% endfor %}

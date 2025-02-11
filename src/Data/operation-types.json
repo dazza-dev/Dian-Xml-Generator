@@ -1,0 +1,46 @@
+[
+    {
+        "code": "09",
+        "name": "AIU"
+    },
+    {
+        "code": "10",
+        "name": "Estándar"
+    },
+    {
+        "code": "11",
+        "name": "Mandatos"
+    },
+    {
+        "code": "12",
+        "name": "Transporte"
+    },
+    {
+        "code": "14",
+        "name": "Notariios"
+    },
+    {
+        "code": "15",
+        "name": "Compra Divisas"
+    },
+    {
+        "code": "16",
+        "name": "Venta Divisas"
+    },
+    {
+        "code": "20",
+        "name": "Nota Crédito que referencia una factura electrónica."
+    },
+    {
+        "code": "22",
+        "name": "Nota Crédito sin referencia a una factura electrónica."
+    },
+    {
+        "code": "30",
+        "name": "Nota Débito que referencia una factura electrónica."
+    },
+    {
+        "code": "32",
+        "name": "Nota Débito sin referencia a una factura electrónica."
+    }
+]

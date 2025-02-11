@@ -1,0 +1,10 @@
+{% for payment in payments %}
+<cac:PaymentMeans>
+    <cbc:ID>{{ payment_mean.code }}</cbc:ID>
+    <cbc:PaymentMeansCode>{{ payment.payment_method.code }}</cbc:PaymentMeansCode>
+    {% if payment_mean.code == '2' %}
+    <cbc:PaymentDueDate>{{ payment.due_date }}</cbc:PaymentDueDate>
+    {% endif %}
+    <cbc:PaymentID>{{ payment.payment_reference }}</cbc:PaymentID>
+</cac:PaymentMeans>
+{% endfor %}
