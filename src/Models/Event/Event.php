@@ -5,12 +5,17 @@ namespace DazzaDev\DianXmlGenerator\Models\Event;
 use DateTime;
 use DazzaDev\DianXmlGenerator\DataLoader;
 use DazzaDev\DianXmlGenerator\DateValidator;
+use DazzaDev\DianXmlGenerator\Enums\Environments;
 use DazzaDev\DianXmlGenerator\Models\Entities\Company;
 use DazzaDev\DianXmlGenerator\Models\Entities\Customer;
 use DazzaDev\DianXmlGenerator\Models\Entities\Person;
+use DazzaDev\DianXmlGenerator\Traits\Environment;
+use DazzaDev\DianXmlGenerator\Traits\TraitDocumentType;
 
 class Event
 {
+    use Environment, TraitDocumentType;
+
     /**
      * Number
      */
@@ -61,6 +66,7 @@ class Event
      */
     public function __construct(array $data = [])
     {
+        $this->setDocumentType('96');
         $this->initialize($data);
     }
 
@@ -71,6 +77,16 @@ class Event
     {
         if (empty($data)) {
             return;
+        }
+
+        // Environment
+        if (isset($data['environment'])) {
+            $this->setEnvironment(Environments::from($data['environment']));
+        }
+
+        // Software
+        if (isset($data['software']) && is_array($data['software'])) {
+            $this->setSoftware($data['software']);
         }
 
         // Number

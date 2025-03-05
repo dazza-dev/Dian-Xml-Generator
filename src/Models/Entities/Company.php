@@ -7,7 +7,7 @@ class Company extends Entity
     /**
      * Merchant registration
      */
-    private string $merchantRegistration;
+    private ?string $merchantRegistration = null;
 
     /**
      * Company constructor
@@ -20,7 +20,7 @@ class Company extends Entity
     /**
      * Get merchant registration
      */
-    public function getMerchantRegistration(): string
+    public function getMerchantRegistration(): ?string
     {
         return $this->merchantRegistration;
     }

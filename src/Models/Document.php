@@ -12,18 +12,16 @@ use DazzaDev\DianXmlGenerator\Models\LineItem\LineItem;
 use DazzaDev\DianXmlGenerator\Models\Payment\Payment;
 use DazzaDev\DianXmlGenerator\Models\Payment\PaymentMean;
 use DazzaDev\DianXmlGenerator\Models\Tax\Tax;
+use DazzaDev\DianXmlGenerator\Traits\Environment;
+use DazzaDev\DianXmlGenerator\Traits\TraitDocumentType;
 
 class Document
 {
-    private array $environment;
-
-    private Software $software;
+    use Environment, TraitDocumentType;
 
     private string $profileId;
 
     private OperationType $operationType;
-
-    private DocumentType $documentType;
 
     private string $prefix;
 
@@ -160,38 +158,6 @@ class Document
     }
 
     /**
-     * Get Software
-     */
-    public function getSoftware(): Software
-    {
-        return $this->software;
-    }
-
-    /**
-     * Set Software
-     */
-    public function setSoftware(array $software): void
-    {
-        $this->software = new Software($software);
-    }
-
-    /**
-     * Set environment
-     */
-    public function setEnvironment(Environments $environment): void
-    {
-        $this->environment = $environment->toArray();
-    }
-
-    /**
-     * Get environment
-     */
-    public function getEnvironment()
-    {
-        return $this->environment;
-    }
-
-    /**
      * Get profile ID
      */
     public function getProfileId(): string
@@ -223,24 +189,6 @@ class Document
         $operationType = (new DataLoader('operation-types'))->getByCode($operationTypeCode);
 
         $this->operationType = new OperationType($operationType);
-    }
-
-    /**
-     * Get document type
-     */
-    public function getDocumentType(): DocumentType
-    {
-        return $this->documentType;
-    }
-
-    /**
-     * Set document type
-     */
-    public function setDocumentType(string $documentTypeCode): void
-    {
-        $documentType = (new DataLoader('document-types'))->getByCode($documentTypeCode);
-
-        $this->documentType = new DocumentType($documentType);
     }
 
     /**

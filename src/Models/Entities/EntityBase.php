@@ -23,16 +23,6 @@ class EntityBase
     private string $verificationCode;
 
     /**
-     * Regime
-     */
-    private Regime $regime;
-
-    /**
-     * Tax scheme
-     */
-    private array $taxScheme;
-
-    /**
      * Entity Base constructor
      */
     public function __construct(array $data = [])
@@ -54,9 +44,6 @@ class EntityBase
 
         // Identification number
         $this->setIdentificationNumber($data['identification_number']);
-
-        // Regime
-        $this->setRegime($data['regime']);
     }
 
     /**
@@ -105,51 +92,6 @@ class EntityBase
     }
 
     /**
-     * Get regime
-     */
-    public function getRegime(): Regime
-    {
-        return $this->regime;
-    }
-
-    /**
-     * Set regime
-     */
-    public function setRegime(int|string $regimeCode): void
-    {
-        $regime = (new DataLoader('regimes'))->getByCode($regimeCode);
-
-        $this->calculateTaxScheme($regimeCode);
-
-        $this->regime = new Regime($regime);
-    }
-
-    /**
-     * Calculate tax scheme
-     */
-    private function calculateTaxScheme(string $regimeCode): void
-    {
-        $taxMapping = [
-            '48' => ['code' => '01', 'name' => 'IVA'],
-            '49' => ['code' => 'ZZ', 'name' => 'No aplica'],
-            'O-06' => ['code' => '01', 'name' => 'IVA'],
-            'R-99-PN' => ['code' => 'ZZ', 'name' => 'No aplica'],
-        ];
-
-        if (isset($taxMapping[$regimeCode])) {
-            $this->taxScheme = $taxMapping[$regimeCode];
-        }
-    }
-
-    /**
-     * Get tax scheme
-     */
-    public function getTaxScheme(): array
-    {
-        return $this->taxScheme;
-    }
-
-    /**
      * Get array representation
      */
     public function toArray(): array
@@ -158,8 +100,6 @@ class EntityBase
             'identification_type' => $this->identificationType?->toArray(),
             'identification_number' => $this->identificationNumber,
             'verification_code' => $this->verificationCode,
-            'regime' => $this->regime?->toArray(),
-            'tax_scheme' => $this->taxScheme,
         ];
     }
 }

@@ -29,6 +29,10 @@ class Person extends EntityBase
      */
     public function __construct(array $data = [])
     {
+        if (empty($data)) {
+            return;
+        }
+
         parent::__construct($data);
 
         // First Name
