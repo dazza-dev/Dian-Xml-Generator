@@ -1,0 +1,76 @@
+{% apply spaceless %}<?xml version="1.0" encoding="UTF-8" standalone="no"?>{% endapply %}
+<ApplicationResponse xmlns="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+		xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+		xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+		xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+		xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+		xmlns:sts="dian:gov:co:facturaelectronica:Structures-2-1"
+		xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"
+		xmlns:xades141="http://uri.etsi.org/01903/v1.4.1#"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2 http://docs.oasis-open.org/ubl/os-UBL-2.1/xsd/maindoc/UBL-ApplicationResponse-2.1.xsd">
+    {# UBLExtensions #}
+    {% include 'Components/ubl-extensions.xml.twig' %}
+    <cbc:UBLVersionID>UBL 2.1</cbc:UBLVersionID>
+	<cbc:CustomizationID>1</cbc:CustomizationID>
+	<cbc:ProfileID>DIAN 2.1: ApplicationResponse de la Factura Electrónica de Venta</cbc:ProfileID>			   
+	<cbc:ProfileExecutionID>{{ environment.code }}</cbc:ProfileExecutionID>
+    <cbc:ID>{{ number }}</cbc:ID>
+    <cbc:UUID schemeID="{{ environment.code }}" schemeName="CUDE-SHA384" />
+    <cbc:IssueDate>{{ issue_date }}</cbc:IssueDate>
+    <cbc:IssueTime>{{ issue_time }}</cbc:IssueTime>
+    <cbc:Note></cbc:Note>
+    <cbc:Note>{{ note }}</cbc:Note>
+    {# SenderParty #}
+    <cac:SenderParty>
+        <cac:PartyTaxScheme>
+            <cbc:RegistrationName>{{ customer.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if customer.identification_type.code == '31' %} schemeID="{{ customer.verification_code }}" {% endif %} schemeName="{{ customer.identification_type.code }}">{{ customer.identification_number }}</cbc:CompanyID>
+            {# Tax scheme #}
+            <cac:TaxScheme>
+                <cbc:ID>{{ customer.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ customer.tax_scheme.name }}</cbc:Name>
+            </cac:TaxScheme>
+            {# End tax scheme #}
+        </cac:PartyTaxScheme>
+    </cac:SenderParty>
+    {# End SenderParty #}
+    {# ReceiverParty #}
+    <cac:ReceiverParty>
+        <cac:PartyTaxScheme>
+            <cbc:RegistrationName>{{ company.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if company.identification_type.code == '31' %} schemeID="{{ company.verification_code }}" {% endif %} schemeName="{{ company.identification_type.code }}">{{ company.identification_number }}</cbc:CompanyID>
+            {# Tax scheme #}
+            <cac:TaxScheme>
+                <cbc:ID>{{ company.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ company.tax_scheme.name }}</cbc:Name>
+            </cac:TaxScheme>
+            {# End tax scheme #}
+        </cac:PartyTaxScheme>
+    </cac:ReceiverParty>
+    {# End ReceiverParty #}
+    {# DocumentResponse #}
+    <cac:DocumentResponse>
+        {# Event #}
+		<cac:Response>
+			<cbc:ResponseCode>{{ event_type.code }}</cbc:ResponseCode>
+			<cbc:Description>{{ event_type.name }}</cbc:Description>
+		</cac:Response>
+        {# End Event #}
+		<cac:DocumentReference>
+			<cbc:ID>{{ document_reference.number }}</cbc:ID>
+			<cbc:UUID schemeName="CUFE-SHA384">{{ document_reference.unique_id }}</cbc:UUID>
+			<cbc:DocumentTypeCode>{{ document_reference.document_type.code }}</cbc:DocumentTypeCode>
+		</cac:DocumentReference>
+		<cac:IssuerParty>
+			<cac:Person>
+                <cbc:ID {% if person.identification_type.code == '31' %} schemeID="{{ person.verification_code }}" {% endif %} schemeName="{{ person.identification_type.code }}">{{ person.identification_number }}</cbc:ID>
+				<cbc:FirstName>{{ person.first_name }}</cbc:FirstName>
+				<cbc:FamilyName>{{ person.last_name }}</cbc:FamilyName>
+				<cbc:JobTitle>{{ person.job_title }}</cbc:JobTitle>
+				<cbc:OrganizationDepartment>{{ person.department }}</cbc:OrganizationDepartment>
+			</cac:Person>
+		</cac:IssuerParty>
+	</cac:DocumentResponse>
+    {# End DocumentResponse #}
+</AttachedDocument>

@@ -7,34 +7,13 @@ use DazzaDev\DianXmlGenerator\Models\Geography\Address;
 use DazzaDev\DianXmlGenerator\Models\Geography\City;
 use DazzaDev\DianXmlGenerator\Models\Geography\Country;
 use DazzaDev\DianXmlGenerator\Models\Geography\State;
-use Rmunate\DianColombia\DIAN;
 
-class Entity
+class Entity extends EntityBase
 {
-    /**
-     * Identification type
-     */
-    private IdentificationType $identificationType;
-
-    /**
-     * Identification number
-     */
-    private string $identificationNumber;
-
-    /**
-     * Verification code
-     */
-    private string $verificationCode;
-
     /**
      * Entity type
      */
     private EntityType $entityType;
-
-    /**
-     * Regime
-     */
-    private Regime $regime;
 
     /**
      * Liability
@@ -55,11 +34,6 @@ class Entity
      * Phone
      */
     private string $phone;
-
-    /**
-     * Tax scheme
-     */
-    private array $taxScheme;
 
     /**
      * Address
@@ -86,6 +60,8 @@ class Entity
      */
     public function __construct(array $data = [])
     {
+        parent::__construct($data);
+
         $this->setData($data);
     }
 
@@ -98,17 +74,8 @@ class Entity
             return;
         }
 
-        // Identification type
-        $this->setIdentificationType($data['identificationType']);
-
-        // Identification number
-        $this->setIdentificationNumber($data['identificationNumber']);
-
         // Entity type
-        $this->setEntityType($data['entityType']);
-
-        // Regime
-        $this->setRegime($data['regime']);
+        $this->setEntityType($data['entity_type']);
 
         // Liability
         $this->setLiability($data['liability']);
@@ -144,51 +111,6 @@ class Entity
     }
 
     /**
-     * Get identification type
-     */
-    public function getIdentificationType(): IdentificationType
-    {
-        return $this->identificationType;
-    }
-
-    /**
-     * Set identification type
-     */
-    public function setIdentificationType(int|string $identificationTypeCode): void
-    {
-        $identificationType = (new DataLoader('identification-types'))->getByCode($identificationTypeCode);
-
-        $this->identificationType = new IdentificationType($identificationType);
-    }
-
-    /**
-     * Get identification number
-     */
-    public function getIdentificationNumber(): string
-    {
-        return $this->identificationNumber;
-    }
-
-    /**
-     * Set identification number
-     */
-    public function setIdentificationNumber(string $identificationNumber): void
-    {
-        $this->identificationNumber = $identificationNumber;
-
-        // Calculate verification code
-        $this->verificationCode = DIAN::digitoVerificacion($this->identificationNumber);
-    }
-
-    /**
-     * Get verification code
-     */
-    public function getVerificationCode(): string
-    {
-        return $this->verificationCode;
-    }
-
-    /**
      * Get entity type
      */
     public function getEntityType(): EntityType
@@ -207,26 +129,6 @@ class Entity
     }
 
     /**
-     * Get regime
-     */
-    public function getRegime(): Regime
-    {
-        return $this->regime;
-    }
-
-    /**
-     * Set regime
-     */
-    public function setRegime(int|string $regimeCode): void
-    {
-        $regime = (new DataLoader('regimes'))->getByCode($regimeCode);
-
-        $this->calculateTaxScheme($regimeCode);
-
-        $this->regime = new Regime($regime);
-    }
-
-    /**
      * Get liability
      */
     public function getLiability(): Liability
@@ -242,31 +144,6 @@ class Entity
         $liability = (new DataLoader('liabilities'))->getByCode($liabilityCode);
 
         $this->liability = new Liability($liability);
-    }
-
-    /**
-     * Calculate tax scheme
-     */
-    private function calculateTaxScheme(string $regimeCode): void
-    {
-        $taxMapping = [
-            '48' => ['code' => '01', 'name' => 'IVA'],
-            '49' => ['code' => 'ZZ', 'name' => 'No aplica'],
-            'O-06' => ['code' => '01', 'name' => 'IVA'],
-            'R-99-PN' => ['code' => 'ZZ', 'name' => 'No aplica'],
-        ];
-
-        if (isset($taxMapping[$regimeCode])) {
-            $this->taxScheme = $taxMapping[$regimeCode];
-        }
-    }
-
-    /**
-     * Get tax scheme
-     */
-    public function getTaxScheme(): array
-    {
-        return $this->taxScheme;
     }
 
     /**
@@ -392,12 +269,8 @@ class Entity
      */
     public function toArray(): array
     {
-        return [
-            'identification_type' => $this->identificationType?->toArray(),
-            'identification_number' => $this->identificationNumber,
-            'verification_code' => $this->verificationCode,
+        return parent::toArray() + [
             'entity_type' => $this->entityType?->toArray(),
-            'regime' => $this->regime?->toArray(),
             'liability' => $this->liability?->toArray(),
             'name' => $this->name,
             'email' => $this->email,
@@ -406,7 +279,6 @@ class Entity
             'city' => $this->city?->toArray(),
             'state' => $this->state?->toArray(),
             'country' => $this->country?->toArray(),
-            'tax_scheme' => $this->taxScheme,
         ];
     }
 }
