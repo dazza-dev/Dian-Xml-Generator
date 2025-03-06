@@ -24,12 +24,12 @@
     {# SenderParty #}
     <cac:SenderParty>
         <cac:PartyTaxScheme>
-            <cbc:RegistrationName>{{ customer.name }}</cbc:RegistrationName>
-            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if customer.identification_type.code == '31' %} schemeID="{{ customer.verification_code }}" {% endif %} schemeName="{{ customer.identification_type.code }}">{{ customer.identification_number }}</cbc:CompanyID>
+            <cbc:RegistrationName>{{ sender.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if sender.identification_type.code == '31' %} schemeID="{{ sender.verification_code }}" {% endif %} schemeName="{{ sender.identification_type.code }}">{{ sender.identification_number }}</cbc:CompanyID>
             {# Tax scheme #}
             <cac:TaxScheme>
-                <cbc:ID>{{ customer.tax_scheme.code }}</cbc:ID>
-                <cbc:Name>{{ customer.tax_scheme.name }}</cbc:Name>
+                <cbc:ID>{{ sender.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ sender.tax_scheme.name }}</cbc:Name>
             </cac:TaxScheme>
             {# End tax scheme #}
         </cac:PartyTaxScheme>
@@ -38,12 +38,12 @@
     {# ReceiverParty #}
     <cac:ReceiverParty>
         <cac:PartyTaxScheme>
-            <cbc:RegistrationName>{{ company.name }}</cbc:RegistrationName>
-            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if company.identification_type.code == '31' %} schemeID="{{ company.verification_code }}" {% endif %} schemeName="{{ company.identification_type.code }}">{{ company.identification_number }}</cbc:CompanyID>
+            <cbc:RegistrationName>{{ receiver.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if receiver.identification_type.code == '31' %} schemeID="{{ receiver.verification_code }}" {% endif %} schemeName="{{ receiver.identification_type.code }}">{{ receiver.identification_number }}</cbc:CompanyID>
             {# Tax scheme #}
             <cac:TaxScheme>
-                <cbc:ID>{{ company.tax_scheme.code }}</cbc:ID>
-                <cbc:Name>{{ company.tax_scheme.name }}</cbc:Name>
+                <cbc:ID>{{ receiver.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ receiver.tax_scheme.name }}</cbc:Name>
             </cac:TaxScheme>
             {# End tax scheme #}
         </cac:PartyTaxScheme>
@@ -59,7 +59,7 @@
         {# End Event #}
 		<cac:DocumentReference>
 			<cbc:ID>{{ document_reference.number }}</cbc:ID>
-			<cbc:UUID schemeName="CUFE-SHA384">{{ document_reference.unique_id }}</cbc:UUID>
+			<cbc:UUID schemeName="CUFE-SHA384">{{ document_reference.unique_identifier }}</cbc:UUID>
 			<cbc:DocumentTypeCode>{{ document_reference.document_type.code }}</cbc:DocumentTypeCode>
 		</cac:DocumentReference>
 		<cac:IssuerParty>

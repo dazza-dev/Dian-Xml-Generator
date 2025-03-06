@@ -6,9 +6,9 @@ use DateTime;
 use DazzaDev\DianXmlGenerator\DataLoader;
 use DazzaDev\DianXmlGenerator\DateValidator;
 use DazzaDev\DianXmlGenerator\Enums\Environments;
-use DazzaDev\DianXmlGenerator\Models\Entities\Company;
-use DazzaDev\DianXmlGenerator\Models\Entities\Customer;
 use DazzaDev\DianXmlGenerator\Models\Entities\Person;
+use DazzaDev\DianXmlGenerator\Models\Entities\Receiver;
+use DazzaDev\DianXmlGenerator\Models\Entities\Sender;
 use DazzaDev\DianXmlGenerator\Traits\Environment;
 use DazzaDev\DianXmlGenerator\Traits\TraitDocumentType;
 
@@ -37,14 +37,14 @@ class Event
     private string $note;
 
     /**
-     * Customer
+     * Sender
      */
-    private Customer $customer;
+    private Sender $sender;
 
     /**
-     * Company
+     * Receiver
      */
-    private Company $company;
+    private Receiver $receiver;
 
     /**
      * Person
@@ -104,11 +104,11 @@ class Event
         // Document Reference
         $this->setDocumentReference($data['document_reference']);
 
-        // Company
-        $this->setCompany($data['company']);
+        // Sender
+        $this->setSender($data['sender']);
 
-        // Customer
-        $this->setCustomer($data['customer']);
+        // Receiver
+        $this->setReceiver($data['receiver']);
 
         // Person
         $this->setPerson($data['person']);
@@ -224,35 +224,35 @@ class Event
     }
 
     /**
-     * Get customer
+     * Get sender
      */
-    public function getCustomer(): Customer
+    public function getSender(): Sender
     {
-        return $this->customer;
+        return $this->sender;
     }
 
     /**
-     * Set customer
+     * Set sender
      */
-    public function setCustomer(array|Customer $customer): void
+    public function setSender(array|Sender $sender): void
     {
-        $this->customer = $customer instanceof Customer ? $customer : new Customer($customer);
+        $this->sender = $sender instanceof Sender ? $sender : new Sender($sender);
     }
 
     /**
-     * Get company
+     * Get receiver
      */
-    public function getCompany(): Company
+    public function getReceiver(): Receiver
     {
-        return $this->company;
+        return $this->receiver;
     }
 
     /**
-     * Set company
+     * Set receiver
      */
-    public function setCompany(array|Company $company): void
+    public function setReceiver(array|Receiver $receiver): void
     {
-        $this->company = $company instanceof Company ? $company : new Company($company);
+        $this->receiver = $receiver instanceof Receiver ? $receiver : new Receiver($receiver);
     }
 
     /**
@@ -277,14 +277,17 @@ class Event
     public function toArray(): array
     {
         return [
+            'environment' => $this->getEnvironment(),
+            'software' => $this->getSoftware()->toArray(),
+            'document_type' => $this->getDocumentType()->toArray(),
             'number' => $this->number,
             'issue_date' => $this->issueDate,
             'issue_time' => $this->issueTime,
             'note' => $this->note,
             'event_type' => $this->eventType->toArray(),
             'document_reference' => $this->documentReference->toArray(),
-            'customer' => $this->customer->toArray(),
-            'company' => $this->company->toArray(),
+            'sender' => $this->sender->toArray(),
+            'receiver' => $this->receiver->toArray(),
             'person' => $this->person->toArray(),
         ];
     }

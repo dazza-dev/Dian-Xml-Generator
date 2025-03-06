@@ -1,10 +1,10 @@
 [
     {
-        "name": "Acuso recibido de factura",
+        "name": "Acuse de recibo de Factura Electrónica de Venta",
         "code": "030"
     },
     {
-        "name": "Reclamo de factura",
+        "name": "Reclamo de la Factura Electrónica de Venta",
         "code": "031"
     },
     {

@@ -3,9 +3,9 @@
 namespace DazzaDev\DianXmlGenerator\Builders;
 
 use DazzaDev\DianXmlGenerator\Enums\Environments;
-use DazzaDev\DianXmlGenerator\Models\Entities\Company;
-use DazzaDev\DianXmlGenerator\Models\Entities\Customer;
 use DazzaDev\DianXmlGenerator\Models\Entities\Person;
+use DazzaDev\DianXmlGenerator\Models\Entities\Receiver;
+use DazzaDev\DianXmlGenerator\Models\Entities\Sender;
 use DazzaDev\DianXmlGenerator\Models\Event\Event;
 use DazzaDev\DianXmlGenerator\XmlHelper;
 use DOMDocument;
@@ -45,11 +45,11 @@ class EventBuilder
             $this->event->setDocumentReference($this->eventData['document_reference']);
         }
 
-        // Set customer
-        $this->setCustomer();
+        // Set sender
+        $this->setSender();
 
-        // Set company
-        $this->setCompany();
+        // Set receiver
+        $this->setReceiver();
 
         // Set person
         $this->setPerson();
@@ -72,31 +72,31 @@ class EventBuilder
     }
 
     /**
-     * Set company
+     * Set sender
      */
-    public function setCompany()
+    public function setSender()
     {
-        $company = new Company;
-        $company->setIdentificationType($this->eventData['company']['identification_type']);
-        $company->setIdentificationNumber($this->eventData['company']['identification_number']);
-        $company->setRegime($this->eventData['company']['regime']);
-        $company->setName($this->eventData['company']['name']);
+        $sender = new Sender;
+        $sender->setIdentificationType($this->eventData['sender']['identification_type']);
+        $sender->setIdentificationNumber($this->eventData['sender']['identification_number']);
+        $sender->setRegime($this->eventData['sender']['regime']);
+        $sender->setName($this->eventData['sender']['name']);
 
-        $this->event->setCompany($company);
+        $this->event->setSender($sender);
     }
 
     /**
-     * Set customer
+     * Set receiver
      */
-    public function setCustomer()
+    public function setReceiver()
     {
-        $customer = new Customer;
-        $customer->setIdentificationType($this->eventData['customer']['identification_type']);
-        $customer->setIdentificationNumber($this->eventData['customer']['identification_number']);
-        $customer->setRegime($this->eventData['customer']['regime']);
-        $customer->setName($this->eventData['customer']['name']);
+        $receiver = new Receiver;
+        $receiver->setIdentificationType($this->eventData['receiver']['identification_type']);
+        $receiver->setIdentificationNumber($this->eventData['receiver']['identification_number']);
+        $receiver->setRegime($this->eventData['receiver']['regime']);
+        $receiver->setName($this->eventData['receiver']['name']);
 
-        $this->event->setCustomer($customer);
+        $this->event->setReceiver($receiver);
     }
 
     /**
