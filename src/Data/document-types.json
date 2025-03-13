@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Factura electrónica de venta",
+        "code": "01",
+        "hash_type": "CUFE-SHA384",
+        "code_type": "fv"
+    },
+    {
+        "name": "Factura electrónica de exportación",
+        "code": "02",
+        "hash_type": "CUFE-SHA384",
+        "code_type": "fv"
+    },
+    {
+        "name": "Factura electrónica de contingencia talonario o papel",
+        "code": "03",
+        "hash_type": "CUDE-SHA384",
+        "code_type": "fv"
+    },
+    {
+        "name": "Factura electrónica de contingencia contingencia DIAN",
+        "code": "04",
+        "hash_type": "CUFE-SHA384",
+        "code_type": "fv"
+    },
+    {
+        "name": "Nota de crédito electrónica",
+        "code": "91",
+        "hash_type": "CUDE-SHA384",
+        "code_type": "nc"
+    },
+    {
+        "name": "Nota de débito electrónica",
+        "code": "92",
+        "hash_type": "CUDE-SHA384",
+        "code_type": "nd"
+    },
+    {
+        "name": "Application Response",
+        "code": "96",
+        "hash_type": "CUDE-SHA384",
+        "code_type": "ar"
+    },
+    {
+        "name": "Attached Document",
+        "code": "AD",
+        "hash_type": "",
+        "code_type": "ad"
+    },
+    {
+        "name": "ZIP",
+        "code": "Z",
+        "hash_type": "",
+        "code_type": "z"
+    }
+]

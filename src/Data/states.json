@@ -1,0 +1,167 @@
+[
+    {
+        "code": "91",
+        "name": "Amazonas",
+        "country": "CO"
+    },
+    {
+        "code": "05", 
+        "name": "Antioquia",
+        "country": "CO"
+    },
+    {
+        "code": "81",
+        "name": "Arauca",
+        "country": "CO"
+    },
+    {
+        "code": "08",
+        "name": "Atlántico",
+        "country": "CO"
+    },
+    {
+        "code": "11",
+        "name": "Bogotá",
+        "country": "CO"
+    },
+    {
+        "code": "13",
+        "name": "Bolívar",
+        "country": "CO"
+    },
+    {
+        "code": "15",
+        "name": "Boyacá",
+        "country": "CO"
+    },
+    {
+        "code": "17",
+        "name": "Caldas",
+        "country": "CO"
+    },
+    {
+        "code": "18",
+        "name": "Caquetá",
+        "country": "CO"
+    },
+    {
+        "code": "85",
+        "name": "Casanare",
+        "country": "CO"
+    },
+    {
+        "code": "19",
+        "name": "Cauca",
+        "country": "CO"
+    },
+    {
+        "code": "20",
+        "name": "Cesar",
+        "country": "CO"
+    },
+    {
+        "code": "27",
+        "name": "Chocó",
+        "country": "CO"
+    },
+    {
+        "code": "23",
+        "name": "Córdoba",
+        "country": "CO"
+    },
+    {
+        "code": "25",
+        "name": "Cundinamarca",
+        "country": "CO"
+    },
+    {
+        "code": "94",
+        "name": "Guainía",
+        "country": "CO"
+    },
+    {
+        "code": "95",
+        "name": "Guaviare",
+        "country": "CO"
+    },
+    {
+        "code": "41",
+        "name": "Huila",
+        "country": "CO"
+    },
+    {
+        "code": "44",
+        "name": "La Guajira",
+        "country": "CO"
+    },
+    {
+        "code": "47",
+        "name": "Magdalena",
+        "country": "CO"
+    },
+    {
+        "code": "50",
+        "name": "Meta",
+        "country": "CO"
+    },
+    {
+        "code": "52",
+        "name": "Nariño",
+        "country": "CO"
+    },
+    {
+        "code": "54",
+        "name": "Norte de Santander",
+        "country": "CO"
+    },
+    {
+        "code": "86",
+        "name": "Putumayo",
+        "country": "CO"
+    },
+    {
+        "code": "63",
+        "name": "Quindío",
+        "country": "CO"
+    },
+    {
+        "code": "66",
+        "name": "Risaralda",
+        "country": "CO"
+    },
+    {
+        "code": "88",
+        "name": "San Andrés y Providencia",
+        "country": "CO"
+    },
+    {
+        "code": "68",
+        "name": "Santander",
+        "country": "CO"
+    },
+    {
+        "code": "70",
+        "name": "Sucre",
+        "country": "CO"
+    },
+    {
+        "code": "73",
+        "name": "Tolima",
+        "country": "CO"
+    },
+    {
+        "code": "76",
+        "name": "Valle del Cauca",
+        "country": "CO"
+    },
+    {
+        "code": "97",
+        "name": "Vaupés",
+        "country": "CO"
+    },
+    {
+        "code": "99",
+        "name": "Vichada",
+        "country": "CO"
+    }
+]

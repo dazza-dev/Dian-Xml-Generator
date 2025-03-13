@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Acuse de recibo de Factura Electrónica de Venta",
+        "code": "030"
+    },
+    {
+        "name": "Reclamo de la Factura Electrónica de Venta",
+        "code": "031"
+    },
+    {
+        "name": "Recibo del bien y/o prestación del servicio",
+        "code": "032"
+    },
+    {
+        "name": "Aceptación expresa",
+        "code": "033"
+    }
+]

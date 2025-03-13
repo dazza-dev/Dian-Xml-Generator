@@ -1,0 +1,10 @@
+{% for payment in payments %}
+<cac:PrepaidPayment>
+    <cbc:ID>{{ loop.index }}</cbc:ID>
+    <cbc:PaidAmount currencyID="{{ currency.code }}">{{ payment.amount|number_format(2, '.', '') }}</cbc:PaidAmount>
+    <cbc:ReceivedDate>{{ payment.received_date }}</cbc:ReceivedDate>
+    <cbc:PaidDate>{{ payment.paid_date }}</cbc:PaidDate>
+    <cbc:PaidTime>{{ payment.paid_time }}</cbc:PaidTime>
+    <cbc:InstructionID></cbc:InstructionID>
+</cac:PrepaidPayment>
+{% endfor %}

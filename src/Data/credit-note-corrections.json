@@ -1,0 +1,26 @@
+[
+    {
+        "code": "1",
+        "name": "Devolución parcial de los bienes y/o no aceptación parcial del servicio"
+    },
+    {
+        "code": "2",
+        "name": "Anulación de factura electrónica"
+    },
+    {
+        "code": "3",
+        "name": "Rebaja  o descuento parcial o total"
+    },
+    {
+        "code": "4",
+        "name": "Ajuste de precio"
+    },
+    {
+        "code": "5",
+        "name": "Descuento comercial por pronto pago"
+    },
+    {
+        "code": "6",
+        "name": "Descuento comercial por volumen de ventas"
+    }
+]

@@ -1,0 +1,94 @@
+[
+    {
+        "code": "11",
+        "name": "Registro civil"
+    },
+    {
+        "code": "12",
+        "name": "Tarjeta de identidad"
+    },
+    {
+        "code": "13",
+        "name": "Cédula de ciudadanía"
+    },
+    {
+        "code": "21",
+        "name": "Tarjeta de extranjería"
+    },
+    {
+        "code": "22",
+        "name": "Cédula de extranjería"
+    },
+    {
+        "code": "31",
+        "name": "NIT"
+    },
+    {
+        "code": "41",
+        "name": "Pasaporte"
+    },
+    {
+        "code": "42",
+        "name": "Documento de identificación extranjero"
+    },
+    {
+        "code": "50",
+        "name": "NIT de otro país"
+    },
+    {
+        "code": "91",
+        "name": "NUIP"
+    },
+    {
+        "code": "CC",
+        "name": "Cédula de ciudadanía"
+    },
+    {
+        "code": "CE",
+        "name": "Cédula de extranjería"
+    },
+    {
+        "code": "CD",
+        "name": "Carné diplomático"
+    },
+    {
+        "code": "PA",
+        "name": "Pasaporte"
+    },
+    {
+        "code": "SC",
+        "name": "Salvoconducto"
+    },
+    {
+        "code": "PE",
+        "name": "Permiso especial de permanencia"
+    },
+    {
+        "code": "RC",
+        "name": "Registro civil de nacimiento"
+    },
+    {
+        "code": "TI",
+        "name": "Tarjeta de identidad"
+    },
+    {
+        "code": "CN",
+        "name": "Certificado de nacido vivo"
+    },
+    {
+        "code": "AS",
+        "name": "Adulto sin identificar"
+    },
+    {
+        "code": "MS",
+        "name": "Menor sin identificar"
+    },
+    {
+        "code": "DE",
+        "name": "Documento extranjero"
+    },
+    {
+        "code": "SI",
+        "name": "Sin identificación"
+    }
+]
