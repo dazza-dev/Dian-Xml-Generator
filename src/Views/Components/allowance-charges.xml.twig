@@ -1,0 +1,15 @@
+{% for allowance_charge in allowance_charges %}
+    <cac:AllowanceCharge>
+        <cbc:ID>{{ loop.index }}</cbc:ID>
+        <cbc:ChargeIndicator>{{ allowance_charge.is_charge ? 'true' : 'false' }}</cbc:ChargeIndicator>
+        {% if allowance_charge.is_charge == false %}
+        <cbc:AllowanceChargeReasonCode>{{ allowance_charge.reason.code }}</cbc:AllowanceChargeReasonCode>
+        {% endif %}
+        <cbc:AllowanceChargeReason>{{ allowance_charge.reason.name }}</cbc:AllowanceChargeReason>
+        <cbc:MultiplierFactorNumeric>{{ allowance_charge.percentage | number_format(2, '.', '') }}</cbc:MultiplierFactorNumeric>
+        <cbc:Amount currencyID="{{ currency.code }}">{{ allowance_charge.amount | number_format(2, '.', '') }}</cbc:Amount>
+        {% if allowance_charge.base_amount %}
+        <cbc:BaseAmount currencyID="{{ currency.code }}">{{ allowance_charge.base_amount | number_format(2, '.', '') }}</cbc:BaseAmount>
+        {% endif %}
+    </cac:AllowanceCharge>
+{% endfor %}

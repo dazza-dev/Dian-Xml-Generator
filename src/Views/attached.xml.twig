@@ -1,0 +1,91 @@
+{% apply spaceless %}<?xml version="1.0" encoding="UTF-8" standalone="no"?>{% endapply %}
+<AttachedDocument 
+        xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+        xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+        xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+        xmlns:ccts="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
+        xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+        xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"
+        xmlns:xades141="http://uri.etsi.org/01903/v1.4.1#"
+        xmlns="urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2">
+    <cbc:UBLVersionID>UBL 2.1</cbc:UBLVersionID>
+    <cbc:CustomizationID>Documentos adjuntos</cbc:CustomizationID>
+    <cbc:ProfileID>DIAN 2.1</cbc:ProfileID>
+    <cbc:ProfileExecutionID>1</cbc:ProfileExecutionID>
+    <cbc:ID>{{ prefix }}{{ number }}</cbc:ID>
+    <cbc:IssueDate>{{ issue_date }}</cbc:IssueDate>
+    <cbc:IssueTime>{{ issue_time }}</cbc:IssueTime>
+    <cbc:DocumentType>Contenedor de Factura Electrónica</cbc:DocumentType>
+    <cbc:ParentDocumentID>{{ prefix }}{{ number }}</cbc:ParentDocumentID>
+    {# SenderParty #}
+    <cac:SenderParty>
+        <cac:PartyTaxScheme>
+            <cbc:RegistrationName>{{ company.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if company.identification_type.code == '31' %} schemeID="{{ company.verification_code }}" {% endif %} schemeName="{{ company.identification_type.code }}">{{ company.identification_number }}</cbc:CompanyID>
+            {# Regimen #}
+            <cbc:TaxLevelCode listName="{{ company.regime.code }}">{{ company.liability.code }}</cbc:TaxLevelCode>
+            {# End Regimen #}
+            {# Tax scheme #}
+            <cac:TaxScheme>
+                <cbc:ID>{{ company.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ company.tax_scheme.name }}</cbc:Name>
+            </cac:TaxScheme>
+            {# End tax scheme #}
+        </cac:PartyTaxScheme>
+    </cac:SenderParty>
+    {# End SenderParty #}
+    {# ReceiverParty #}
+    <cac:ReceiverParty>
+        <cac:PartyTaxScheme>
+            <cbc:RegistrationName>{{ customer.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if customer.identification_type.code == '31' %} schemeID="{{ customer.verification_code }}" {% endif %} schemeName="{{ customer.identification_type.code }}">{{ customer.identification_number }}</cbc:CompanyID>
+            {# Regimen #}
+            <cbc:TaxLevelCode listName="{{ customer.regime.code }}">{{ customer.liability.code }}</cbc:TaxLevelCode>
+            {# End Regimen #}
+            {# Tax scheme #}
+            <cac:TaxScheme>
+                <cbc:ID>{{ customer.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ customer.tax_scheme.name }}</cbc:Name>
+            </cac:TaxScheme>
+            {# End tax scheme #}
+        </cac:PartyTaxScheme>
+    </cac:ReceiverParty>
+    {# End ReceiverParty #}
+    {# Attached Signed XML #}
+    <cac:Attachment>
+        <cac:ExternalReference>
+            <cbc:MimeCode>text/xml</cbc:MimeCode>
+            <cbc:EncodingCode>UTF-8</cbc:EncodingCode>
+            <cbc:Description><![CDATA[{{ signed_xml|raw }}]]></cbc:Description>
+        </cac:ExternalReference>
+    </cac:Attachment>
+    {# End Attached Signed XML #}
+    {# Attached ApplicationResponse #}
+    <cac:ParentDocumentLineReference>
+        <cbc:LineID>1</cbc:LineID>
+        <cac:DocumentReference>
+            <cbc:ID>{{ prefix }}{{ number }}</cbc:ID>
+            <cbc:UUID schemeName="CUFE-SHA384">{{ unique_code }}</cbc:UUID>
+            <cbc:IssueDate>{{ issue_date }}</cbc:IssueDate>
+            <cbc:DocumentType>ApplicationResponse</cbc:DocumentType>
+            {# Attached #}
+            <cac:Attachment>
+                <cac:ExternalReference>
+                    <cbc:MimeCode>text/xml</cbc:MimeCode>
+                    <cbc:EncodingCode>UTF-8</cbc:EncodingCode>
+                    <cbc:Description><![CDATA[{{ application_response|raw }}]]></cbc:Description>
+                </cac:ExternalReference>
+            </cac:Attachment>
+            {# End Attached #}
+            {# Validation #}
+            <cac:ResultOfVerification>
+                <cbc:ValidatorID>Unidad Especial Dirección de Impuestos y Aduanas Nacionales</cbc:ValidatorID>
+                <cbc:ValidationResultCode>02</cbc:ValidationResultCode>
+                <cbc:ValidationDate>{{ issue_date }}</cbc:ValidationDate>
+                <cbc:ValidationTime>{{ issue_time }}</cbc:ValidationTime>
+            </cac:ResultOfVerification>
+            {# End Validation #}
+        </cac:DocumentReference>
+    </cac:ParentDocumentLineReference>
+    {# End Attached ApplicationResponse #}
+</AttachedDocument>

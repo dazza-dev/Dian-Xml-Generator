@@ -1,0 +1,22 @@
+[
+    {
+        "code": "94",
+        "name": "unidad"
+    },
+    {
+        "code": "KGM",
+        "name": "kilogramo"
+    },
+    {
+        "code": "GRM",
+        "name": "gramo"
+    },
+    {
+        "code": "LTR",
+        "name": "litro"
+    },
+    {
+        "code": "MLT",
+        "name": "mililitro"
+    }
+]

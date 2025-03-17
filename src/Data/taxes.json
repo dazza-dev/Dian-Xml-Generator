@@ -1,0 +1,82 @@
+[
+    {
+        "code": "01",
+        "name": "IVA",
+        "description": "Impuesto sobre la Ventas"
+    },
+    {
+        "code": "02",
+        "name": "IC",
+        "description": "Impuesto al Consumo Departamental"
+    },
+    {
+        "code": "03",
+        "name": "ICA",
+        "description": "Impuesto de Industria, Comercio y Aviso"
+    },
+    {
+        "code": "04",
+        "name": "INC",
+        "description": "Impuesto Nacional al Consumo"
+    },
+    {
+        "code": "05",
+        "name": "ReteIVA",
+        "description": "Retención sobre el IVA"
+    },
+    {
+        "code": "06",
+        "name": "ReteFuente",
+        "description": "Retención sobre Renta"
+    },
+    {
+        "code": "07",
+        "name": "ReteICA",
+        "description": "Retención sobre el ICA"
+    },
+    {
+        "code": "20",
+        "name": "FtoHorticultura",
+        "description": "Cuota de Fomento Hortifrutícula"
+    },
+    {
+        "code": "21",
+        "name": "Timbre",
+        "description": "Impuesto de Timbre"
+    },
+    {
+        "code": "22",
+        "name": "Bolsas",
+        "description": "Impuesto Nacional al Consumo de Bolsa Plástica"
+    },
+    {
+        "code": "23",
+        "name": "INCarbono",
+        "description": "Impuesto Nacional del Carbono"
+    },
+    {
+        "code": "24",
+        "name": "INCombustibles",
+        "description": "Impuesto Nacional a los Combustibles"
+    },
+    {
+        "code": "25",
+        "name": "Sobretasa Combustibles",
+        "description": "Sobretasa a los combustibles"
+    },
+    {
+        "code": "26",
+        "name": "Sordicom",
+        "description": "Contribución minoristas (Combustibles)"
+    },
+    {
+        "code": "ZY",
+        "name": "No causa",
+        "description": "No responsable de tributo"
+    },
+    {
+        "code": "ZZ",
+        "name": "Nombre de la figura tributaria",
+        "description": "Otros tributos, tasas, contribuciones, y similares"
+    }
+]

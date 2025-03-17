@@ -1,0 +1,18 @@
+{% if taxes is not empty %}
+<cac:TaxTotal>
+    <cbc:TaxAmount currencyID="{{ currency.code }}">{{ taxes|reduce((sum, tax) => sum + tax.tax_amount, 0)|number_format(2, '.', '') }}</cbc:TaxAmount>
+    {% for tax in taxes %}
+    <cac:TaxSubtotal>
+        <cbc:TaxableAmount currencyID="{{ currency.code }}">{{ tax.taxable_amount|number_format(2, '.', '') }}</cbc:TaxableAmount>
+        <cbc:TaxAmount currencyID="{{ currency.code }}">{{ tax.tax_amount|number_format(2, '.', '') }}</cbc:TaxAmount>
+        <cac:TaxCategory>
+            <cbc:Percent>{{ tax.percent|number_format(2, '.', '') }}</cbc:Percent>
+            <cac:TaxScheme>
+                <cbc:ID>{{ tax.tax_type.code }}</cbc:ID>
+                <cbc:Name>{{ tax.tax_type.name }}</cbc:Name>
+            </cac:TaxScheme>
+        </cac:TaxCategory>
+    </cac:TaxSubtotal>
+    {% endfor %}
+</cac:TaxTotal>
+{% endif %}
