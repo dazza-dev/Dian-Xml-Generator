@@ -1,0 +1,14 @@
+[
+    {
+        "code": "01",
+        "name": "Valor comercial"
+    },
+    {
+        "code": "02",
+        "name": "Valor en inventarios"
+    },
+    {
+        "code": "03",
+        "name": "Otro valor"
+    }
+]

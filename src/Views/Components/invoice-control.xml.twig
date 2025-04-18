@@ -1,0 +1,14 @@
+<sts:InvoiceControl>
+    <sts:InvoiceAuthorization>{{ numbering_range.authorized_code }}</sts:InvoiceAuthorization>
+    <sts:AuthorizationPeriod>
+        <cbc:StartDate>{{ numbering_range.start_date }}</cbc:StartDate>
+        <cbc:EndDate>{{ numbering_range.end_date }}</cbc:EndDate>
+    </sts:AuthorizationPeriod>
+    <sts:AuthorizedInvoices>
+        {% if numbering_range.prefix %}
+        <sts:Prefix>{{ numbering_range.prefix }}</sts:Prefix>
+        {% endif %}
+        <sts:From>{{ numbering_range.start_number }}</sts:From>
+        <sts:To>{{ numbering_range.end_number }}</sts:To>
+    </sts:AuthorizedInvoices>
+</sts:InvoiceControl>
