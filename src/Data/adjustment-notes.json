@@ -1,0 +1,22 @@
+[
+    {
+        "code": "1",
+        "name": "Devolución parcial de los bienes y/o no aceptación parcial del servicio"
+    },
+    {
+        "code": "2",
+        "name": "Anulación del documento soporte en adquisiciones efectuadas a sujetos no obligados a expedir factura de venta o documento equivalente"
+    },
+    {
+        "code": "3",
+        "name": "Rebaja o descuento parcial o total"
+    },
+    {
+        "code": "4",
+        "name": "Ajuste de precio"
+    },
+    {
+        "code": "5",
+        "name": "Otros"
+    }
+]

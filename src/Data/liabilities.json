@@ -1,0 +1,22 @@
+[
+    {
+        "code": "O-13",
+        "name": "Gran contribuyente"
+    },
+    {
+        "code": "O-15",
+        "name": "Autorretenedor"
+    },
+    {
+        "code": "O-23",
+        "name": "Agente de retención IVA"
+    },
+    {
+        "code": "O-47",
+        "name": "Régimen simple de tributación"
+    },
+    {
+        "code": "R-99-PN",
+        "name": "No aplica - otros"
+    }
+]

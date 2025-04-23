@@ -1,0 +1,22 @@
+[
+    {
+        "code": "001",
+        "name": "UNSPSC",
+        "agency_id": "10"
+    },
+    {
+        "code": "010",
+        "name": "GTIN",
+        "agency_id": "9"
+    },
+    {
+        "code": "020",
+        "name": "Partida Arancelarias",
+        "agency_id": "195"
+    },
+    {
+        "code": "999",
+        "name": "Estándar de adopción del contribuyente",
+        "agency_id": ""
+    }
+]

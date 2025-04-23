@@ -1,0 +1,115 @@
+<cac:{{ node }}>
+    {# Entity type (natural or juridical) #}
+    <cbc:AdditionalAccountID>{{ entity.entity_type.code }}</cbc:AdditionalAccountID>
+    {# End entity type #}
+    {# Party #}
+    <cac:Party>
+        {% if entity.entity_type.code == '2' %}
+        {# Party identification #}
+        <cac:PartyIdentification>
+            <cbc:ID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if entity.identification_type.code == '31' %} schemeID="{{ entity.verification_code }}" {% endif %} schemeName="{{ entity.identification_type.code }}">{{ entity.identification_number }}</cbc:ID>
+        </cac:PartyIdentification>
+        {# End party identification #}
+        {% endif %}
+        {# Entity name #}   
+        <cac:PartyName>
+            <cbc:Name>{{ entity.name }}</cbc:Name>
+        </cac:PartyName>
+        {# End entity name #}
+        {% if show_physical_location %}
+        {% if entity.address.address_line %}
+        <cac:PhysicalLocation>
+            <cac:Address>
+                {% if entity.city.code %}
+                {# City #}
+                <cbc:ID>{{ entity.city.code }}</cbc:ID>
+                <cbc:CityName>{{ entity.city.name }}</cbc:CityName>
+                {# End City #}
+                {% endif %}
+                {% if entity.state.code %}
+                {# State #}
+                <cbc:CountrySubentity>{{ entity.state.name }}</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode>{{ entity.state.code }}</cbc:CountrySubentityCode>
+                {# End State #}
+                {% endif %}
+                {# Address #}
+                <cac:AddressLine>
+                    <cbc:Line>{{ entity.address.address_line }}</cbc:Line>
+                </cac:AddressLine>
+                {# End Address #}
+                {% if entity.country.code %}
+                {# Country #}
+                <cac:Country>
+                    <cbc:IdentificationCode>{{ entity.country.code }}</cbc:IdentificationCode>
+                    <cbc:Name languageID="es">{{ entity.country.name }}</cbc:Name>
+                </cac:Country>
+                {# End Country #}
+                {% endif %}
+            </cac:Address>
+        </cac:PhysicalLocation>
+        {% endif %}
+        {% endif %}
+        <cac:PartyTaxScheme>
+            <cbc:RegistrationName>{{ entity.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if entity.identification_type.code == '31' %} schemeID="{{ entity.verification_code }}" {% endif %} schemeName="{{ entity.identification_type.code }}">{{ entity.identification_number }}</cbc:CompanyID>
+            {# Regime and liability #}
+            <cbc:TaxLevelCode listName="{{ entity.regime.code }}">{{ entity.liability.code }}</cbc:TaxLevelCode>
+            {# End regime and liability #}
+            {% if entity.address.address_line %}
+            {# Address #}
+            <cac:RegistrationAddress>
+                {% if entity.city.code %}
+                {# City #}
+                <cbc:ID>{{ entity.city.code }}</cbc:ID>
+                <cbc:CityName>{{ entity.city.name }}</cbc:CityName>
+                {# End city #}
+                {% endif %}
+                {% if entity.state.code %}
+                {# State #}
+                <cbc:CountrySubentity>{{ entity.state.name }}</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode>{{ entity.state.code }}</cbc:CountrySubentityCode>
+                {# End state #}
+                {% endif %}
+                {# Address #}
+                <cac:AddressLine>
+                    <cbc:Line>{{ entity.address.address_line }}</cbc:Line>
+                </cac:AddressLine>
+                {# End address #}
+                {% if entity.country.code %}
+                {# Country #}
+                <cac:Country>
+                    <cbc:IdentificationCode>{{ entity.country.code }}</cbc:IdentificationCode>
+                    <cbc:Name languageID="es">{{ entity.country.name }}</cbc:Name>
+                </cac:Country>
+                {# End country #}
+                {% endif %}
+            </cac:RegistrationAddress>
+            {# End address #}
+            {% endif %}
+            {# Tax scheme #}
+            <cac:TaxScheme>
+                <cbc:ID>{{ entity.tax_scheme.code }}</cbc:ID>
+                <cbc:Name>{{ entity.tax_scheme.name }}</cbc:Name>
+            </cac:TaxScheme>
+            {# End tax scheme #}
+        </cac:PartyTaxScheme>
+        {# End tax scheme #}
+        <cac:PartyLegalEntity>
+            <cbc:RegistrationName>{{ entity.name }}</cbc:RegistrationName>
+            <cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)" {% if entity.identification_type.code == '31' %} schemeID="{{ entity.verification_code }}" {% endif %} schemeName="{{ entity.identification_type.code }}">{{ entity.identification_number }}</cbc:CompanyID>
+            {% if show_merchant_registration %}
+            <cac:CorporateRegistrationScheme>
+                <cbc:ID>{{ prefix }}</cbc:ID>
+                <cbc:Name>{{ entity.merchant_registration }}</cbc:Name>
+            </cac:CorporateRegistrationScheme>
+            {% endif %}
+        </cac:PartyLegalEntity>
+        {# Contact #}
+        <cac:Contact>
+            <cbc:Telephone>{{ entity.phone }}</cbc:Telephone>
+            <cbc:ElectronicMail>{{ entity.email }}</cbc:ElectronicMail>
+        </cac:Contact>
+        {# End contact #}
+    </cac:Party>
+    {# End accounting #}
+</cac:{{ node }}>

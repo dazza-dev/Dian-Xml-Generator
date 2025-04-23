@@ -1,0 +1,64 @@
+{% apply spaceless %}<?xml version="1.0" encoding="UTF-8" standalone="no"?>{% endapply %}
+<CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sts="http://www.dian.gov.co/contratos/facturaelectronica/v1/Structures" xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" xmlns:xades141="http://uri.etsi.org/01903/v1.4.1#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2    http://docs.oasis-open.org/ubl/os-UBL-2.1/xsd/maindoc/UBL-CreditNote-2.1.xsd">
+    {# UBL Extensions #}
+    {% include 'Components/ubl-extensions.xml.twig' with {
+        'provider': company,
+        'qr_url': environment.qr_url
+    } %}
+    <cbc:UBLVersionID>UBL 2.1</cbc:UBLVersionID>
+    <cbc:CustomizationID>{{ operation_type.code }}</cbc:CustomizationID>
+    <cbc:ProfileID>{{ profile_id }}</cbc:ProfileID>
+    <cbc:ProfileExecutionID>{{ environment.code }}</cbc:ProfileExecutionID>
+    <cbc:ID>{{ prefix }}{{ number }}</cbc:ID>
+    <cbc:UUID schemeID="{{ environment.code }}" schemeName="{{ document_type.hash_type }}" />
+    <cbc:IssueDate>{{ issue_date }}</cbc:IssueDate>
+    <cbc:IssueTime>{{ issue_time }}</cbc:IssueTime>
+    <cbc:CreditNoteTypeCode>{{ document_type.code }}</cbc:CreditNoteTypeCode>
+    {% if note %}
+    <cbc:Note>{{ note }}</cbc:Note>
+    {% endif %}
+    <cbc:DocumentCurrencyCode listAgencyID="6" listAgencyName="United Nations Economic Commission for Europe" listID="ISO 4217 Alpha">{{ currency.code }}</cbc:DocumentCurrencyCode>
+    <cbc:LineCountNumeric>{{ line_items|length }}</cbc:LineCountNumeric>
+    {# Discrepancy #}
+    {% if operation_type.code == '20' %}
+    {% include 'Components/discrepancy-response.xml.twig' %}
+    {% endif %}
+    {# BillingReference #}
+    {% include 'Components/billing-reference.xml.twig' with {
+        'billing_reference': billing_reference,
+        'node': 'InvoiceDocumentReference'
+    } %}
+    {# AccountingSupplierParty #}
+    {% include 'Components/accounting.xml.twig' with {
+        'node': 'AccountingSupplierParty',
+        'entity': company,
+        'show_merchant_registration': true,
+        'show_physical_location': true
+    } %}
+    {# AccountingCustomerParty #}
+    {% include 'Components/accounting.xml.twig' with {
+        'node': 'AccountingCustomerParty',
+        'entity': customer,
+        'show_merchant_registration': false,
+        'show_physical_location': false
+    } %}
+    {# PaymentMeans #}
+    {% include 'Components/payment-means.xml.twig' %}
+    {# AllowanceCharges #}
+    {% include 'Components/allowance-charges.xml.twig' with {
+        'allowance_charges': allowance_charges
+    } %}
+    {# TaxTotals #}
+    {% include 'Components/tax-totals.xml.twig' with {
+        'taxes': taxes
+    } %}
+    {# LegalMonetaryTotal #}
+    {% include 'Components/legal-monetary-total.xml.twig' with {
+        'node': 'LegalMonetaryTotal'
+    } %}
+    {# CreditNoteLines #}
+    {% include 'Components/line-items.xml.twig' with {
+        'node': 'CreditNoteLine',
+        'nodeQty': 'CreditedQuantity'
+    } %}
+</CreditNote>

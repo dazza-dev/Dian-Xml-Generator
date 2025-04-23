@@ -1,0 +1,10 @@
+[
+    {
+        "code": 1,
+        "name": "Persona Jurídica"
+    },
+    {
+        "code": 2,
+        "name": "Persona Natural"
+    }
+]
