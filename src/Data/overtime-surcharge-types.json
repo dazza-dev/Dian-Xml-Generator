@@ -1,0 +1,37 @@
+[
+  {
+    "code": "1",
+    "name": "Hora Extra Diurna",
+    "percentage": "25.00"
+  },
+  {
+    "code": "2",
+    "name": "Hora Extra Nocturna",
+    "percentage": "75.00"
+  },
+  {
+    "code": "3",
+    "name": "Hora Recargo Nocturno",
+    "percentage": "35.00"
+  },
+  {
+    "code": "4",
+    "name": "Hora Extra Diurna Dominical y Festivos",
+    "percentage": "100.00"
+  },
+  {
+    "code": "5",
+    "name": "Hora Recargo Diurno Dominical y Festivos",
+    "percentage": "75.00"
+  },
+  {
+    "code": "6",
+    "name": "Hora Extra Nocturna Dominical y Festivos",
+    "percentage": "150.00"
+  },
+  {
+    "code": "7",
+    "name": "Hora Recargo Nocturno Dominical y Festivos",
+    "percentage": "110.00"
+  }
+]

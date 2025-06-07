@@ -1,0 +1,26 @@
+[
+  {
+    "code": "1",
+    "name": "Semanal"
+  },
+  {
+    "code": "2",
+    "name": "Decenal"
+  },
+  {
+    "code": "3",
+    "name": "Catorcenal"
+  },
+  {
+    "code": "4",
+    "name": "Quincenal"
+  },
+  {
+    "code": "5",
+    "name": "Mensual"
+  },
+  {
+    "code": "6",
+    "name": "Otro"
+  }
+]

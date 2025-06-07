@@ -1,0 +1,22 @@
+[
+  {
+    "code": "1",
+    "name": "Termino Fijo"
+  },
+  {
+    "code": "2",
+    "name": "Término Indefinido"
+  },
+  {
+    "code": "3",
+    "name": "Obra o Labor"
+  },
+  {
+    "code": "4",
+    "name": "Aprendizaje"
+  },
+  {
+    "code": "5",
+    "name": "Prácticas o Pasantías"
+  }
+]

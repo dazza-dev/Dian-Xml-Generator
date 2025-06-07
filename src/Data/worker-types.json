@@ -1,0 +1,66 @@
+[
+  {
+    "code": "01",
+    "name": "Dependiente"
+  },
+  {
+    "code": "02",
+    "name": "Servicio domestico"
+  },
+  {
+    "code": "04",
+    "name": "Madre comunitaria"
+  },
+  {
+    "code": "12",
+    "name": "Aprendices del Sena en etapa lectiva"
+  },
+  {
+    "code": "18",
+    "name": "Funcionarios públicos sin tope máximo de ibc"
+  },
+  {
+    "code": "19",
+    "name": "Aprendices del SENA en etapa productiva"
+  },
+  {
+    "code": "21",
+    "name": "Estudiantes de postgrado en salud"
+  },
+  {
+    "code": "22",
+    "name": "Profesor de establecimiento particular"
+  },
+  {
+    "code": "23",
+    "name": "Estudiantes aportes solo riesgos laborales"
+  },
+  {
+    "code": "30",
+    "name": "Dependiente entidades o universidades públicas con régimen especial en salud"
+  },
+  {
+    "code": "31",
+    "name": "Cooperados o pre cooperativas de trabajo asociado"
+  },
+  {
+    "code": "47",
+    "name": "Trabajador dependiente de entidad beneficiaria del sistema general de participaciones - aportes patronales"
+  },
+  {
+    "code": "51",
+    "name": "Trabajador de tiempo parcial"
+  },
+  {
+    "code": "54",
+    "name": "Pre pensionado de entidad en liquidación."
+  },
+  {
+    "code": "56",
+    "name": "Pre pensionado con aporte voluntario a salud"
+  },
+  {
+    "code": "58",
+    "name": "Estudiantes de prácticas laborales en el sector público"
+  }
+]
