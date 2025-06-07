@@ -1,0 +1,117 @@
+{% for item in items %}
+    <{{ node }}
+        {% if item.start_date is defined and item.start_date is not null %}
+            StartDate="{{ item.start_date }}"
+        {% endif %}
+        {% if item.end_date is defined and item.end_date is not null %}
+            EndDate="{{ item.end_date }}"
+        {% endif %}
+        {% if item.quantity is defined and item.quantity is not null %}
+            Quantity="{{ item.quantity }}"
+        {% endif %}
+        {% if item.payment is defined and item.payment is not null %}
+            PaymentAmount="{{ item.payment | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.type is defined and item.type is not null %}
+            Type="{{ item.type }}"
+        {% endif %}
+        {% if item.paymentS is defined and item.paymentS is not null %}
+            SalaryComponentPayment="{{ item.paymentS | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.paymentNS is defined and item.paymentNS is not null %}
+            NonSalaryComponentPayment="{{ item.paymentNS | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.percentage is defined and item.percentage is not null %}
+            Percentage="{{ item.percentage | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.interest_payment is defined and item.interest_payment is not null %}
+            InterestPaymentAmount="{{ item.interest_payment | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.salary_bonus is defined and item.salary_bonus is not null %}
+            SalaryBonusAmount="{{ item.salary_bonus | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.non_salary_bonus is defined and item.non_salary_bonus is not null %}
+            NonSalaryBonusAmount="{{ item.non_salary_bonus | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.salary_assistance is defined and item.salary_assistance is not null %}
+            SalaryAssistanceAmount="{{ item.salary_assistance | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.non_salary_assistance is defined and item.non_salary_assistance is not null %}
+            NonSalaryAssistanceAmount="{{ item.non_salary_assistance | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.description_concept is defined and item.description_concept is not null %}
+            ConceptDescription="{{ item.description_concept }}"
+        {% endif %}
+        {% if item.description is defined and item.description is not null %}
+            Description="{{ item.description }}"
+        {% endif %}
+        {% if item.salary_concept is defined and item.salary_concept is not null %}
+            SalaryConceptAmount="{{ item.salary_concept | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.non_salary_concept is defined and item.non_salary_concept is not null %}
+            NonSalaryConceptAmount="{{ item.non_salary_concept | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.ordinary_compensation is defined and item.ordinary_compensation is not null %}
+            OrdinaryCompensationAmount="{{ item.ordinary_compensation | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.extraordinary_compensation is defined and item.extraordinary_compensation is not null %}
+            ExtraordinaryCompensationAmount="{{ item.extraordinary_compensation | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.salary_food_payment is defined and item.salary_food_payment is not null %}
+            SalaryFoodAllowanceAmount="{{ item.salary_food_payment | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.non_salary_food_payment is defined and item.non_salary_food_payment is not null %}
+            NonSalaryFoodAllowanceAmount="{{ item.non_salary_food_payment | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.deduction is defined and item.deduction is not null %}
+            DeductionAmount="{{ item.deduction | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.public_sanction is defined and item.public_sanction is not null %}
+            PublicSanctionAmount="{{ item.public_sanction | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.private_sanction is defined and item.private_sanction is not null %}
+            PrivateSanctionAmount="{{ item.private_sanction | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.voluntary_pension is defined and item.voluntary_pension is not null %}
+            VoluntaryPensionContributionAmount="{{ item.voluntary_pension | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.withholding_at_source is defined and item.withholding_at_source is not null %}
+            WithholdingTaxAmount="{{ item.withholding_at_source | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.ica is defined and item.ica is not null %}
+            ICATaxAmount="{{ item.ica | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.afc is defined and item.afc is not null %}
+            AFCSavingAmount="{{ item.afc | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.cooperative is defined and item.cooperative is not null %}
+            CooperativeContributionAmount="{{ item.cooperative | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.tax_liens is defined and item.tax_liens is not null %}
+            TaxLienAmount="{{ item.tax_liens | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.supplementary_plan is defined and item.supplementary_plan is not null %}
+            SupplementaryPlanAmount="{{ item.supplementary_plan | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.education is defined and item.education is not null %}
+            EducationPaymentAmount="{{ item.education | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.refund is defined and item.refund is not null %}
+            RefundAmount="{{ item.refund | number_format(2, '.', '') }}"
+        {% endif %}
+        {% if item.debt is defined and item.debt is not null %}
+            DebtPaymentAmount="{{ item.debt | number_format(2, '.', '') }}"
+        {% endif %}
+        {# Lógica para el contenido y cierre de la etiqueta #}
+        {% if item.commission is defined and item.commission is not null %}
+            >{{ item.commission | number_format(2, '.', '') }}</{{ node }}>
+        {% elseif item.third_party_payment is defined and item.third_party_payment is not null %}
+            >{{ item.third_party_payment | number_format(2, '.', '') }}</{{ node }}>
+        {% elseif item.advance is defined and item.advance is not null %}
+            >{{ item.advance | number_format(2, '.', '') }}</{{ node }}>
+        {% elseif item.other_deduction is defined and item.other_deduction is not null %}
+            >{{ item.other_deduction | number_format(2, '.', '') }}</{{ node }}>
+        {% else %}
+            ></{{ node }}>
+        {% endif %}
+{% endfor %}

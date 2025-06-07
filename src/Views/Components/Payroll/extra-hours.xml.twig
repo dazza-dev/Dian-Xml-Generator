@@ -1,0 +1,9 @@
+{% for extraHour in extraHours %}
+    <{{ node }}
+        StartTime="{{ extraHour.start_time }}"
+        EndTime="{{ extraHour.end_time }}"
+        Quantity="{{ extraHour.quantity }}"
+        Percentage="{{ (extraHour.type_overtime_surcharge.percentage | number_format(2, '.', '')) }}"
+        PaymentAmount="{{ (extraHour.payment | number_format(2, '.', '')) }}">
+    </{{ node }}>
+{% endfor %}

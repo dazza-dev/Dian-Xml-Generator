@@ -1,0 +1,85 @@
+<DeductionItems>
+    <HealthContribution
+        Porcentaje="{{ deductions.eps_type_law_deductions.percentage }}"
+        ContributionAmount="{{ deductions.eps_deduction }}"
+    ></HealthContribution>
+    <PensionFundContribution
+        Porcentaje="{{ deductions.pension_type_law_deductions.percentage }}"
+        ContributionAmount="{{ deductions.pension_deduction }}"
+    ></PensionFundContribution>
+    {% if deductions.fondossp_type_law_deductions_id or deductions.fondossp_sub_type_law_deductions_id %}
+        <SolidarityPensionFund
+            {% if deductions.fondossp_type_law_deductions_id %}
+                Porcentaje="{{ deductions.fondossp_type_law_deductions.percentage }}"
+                SolidarityContribution="{{ deductions.fondosp_deduction_SP }}"
+            {% endif %}
+            {% if deductions.fondossp_sub_type_law_deductions_id %}
+                SubsistencePercentage="{{ deductions.fondossp_sub_type_law_deductions.percentage }}"
+                SubsistenceContribution="{{ deductions.fondosp_deduction_sub }}"
+            {% endif %}
+        ></SolidarityPensionFund>
+    {% endif %}
+    {# Labor Union  #}
+    {% if deductions.labor_union %}
+        <UnionDues>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'UnionDueItem', 'items': deductions.labor_union} %}
+        </UnionDues>
+    {% endif %}
+    {# Sanctions #}
+    {% if deductions.sanctions %}
+        <Sanctions>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'SanctionItem', 'items': deductions.sanctions} %}
+        </Sanctions>
+    {% endif %}
+    {# Orders #}
+    {% if deductions.orders %}
+        <PayrollLoanPayments>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'PayrollLoanItem', 'items': deductions.orders} %}
+        </PayrollLoanPayments>
+    {% endif %}
+    {# Third Party Payments #}
+    {% if deductions.third_party_payments %}
+        <ThirdPartyDeductions>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'ThirdPartyDeductionItem', 'items': deductions.third_party_payments} %}
+        </ThirdPartyDeductions>
+    {% endif %}
+    {# Advances #}
+    {% if deductions.advances %}
+        <AdvanceDeductions>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'AdvanceDeductionItem', 'items': deductions.advances} %}
+        </AdvanceDeductions>
+    {% endif %}
+    {# Other Deductions #}
+    {% if deductions.other_deductions %}
+        <OtherDeductions>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'OtherDeductionItem', 'items': deductions.other_deductions} %}
+        </OtherDeductions>
+    {% endif %}
+    {% if deductions.voluntary_pension %}
+        <VoluntaryPension>{{ deductions.voluntary_pension }}</VoluntaryPension>
+    {% endif %}
+    {% if deductions.withholding_at_source %}
+        <WithholdingTax>{{ deductions.withholding_at_source }}</WithholdingTax>
+    {% endif %}
+    {% if deductions.afc %}
+        <AFCSavings>{{ deductions.afc }}</AFCSavings>
+    {% endif %}
+    {% if deductions.cooperative %}
+        <CooperativeDues>{{ deductions.cooperative }}</CooperativeDues>
+    {% endif %}
+    {% if deductions.tax_liens %}
+        <TaxLien>{{ deductions.tax_liens }}</TaxLien>
+    {% endif %}
+    {% if deductions.supplementary_plan %}
+        <SupplementaryHealthPlan>{{ deductions.supplementary_plan }}</SupplementaryHealthPlan>
+    {% endif %}
+    {% if deductions.education %}
+        <EducationFee>{{ deductions.education }}</EducationFee>
+    {% endif %}
+    {% if deductions.refund %}
+        <EmployeeRefundToCompany>{{ deductions.refund }}</EmployeeRefundToCompany>
+    {% endif %}
+    {% if deductions.debt %}
+        <DebtPaymentToCompany>{{ deductions.debt }}</DebtPaymentToCompany>
+    {% endif %}
+</DeductionItems>

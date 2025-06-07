@@ -1,0 +1,14 @@
+<Payment
+    PaymentForm="1"
+    PaymentMethodCode="{{ payment.payment_method.code }}"
+    {% if payment.bank_name %}
+        BankName="{{ payment.bank_name }}"
+        AccountType="{{ payment.account_type }}"
+        AccountNumber="{{ payment.account_number }}"
+    {% endif %}
+></Payment>
+<PaymentDates>
+    {% for payment_date in payment_dates %}
+        <PaymentDate>{{ payment_date.payment_date }}</PaymentDate>
+    {% endfor %}
+</PaymentDates>

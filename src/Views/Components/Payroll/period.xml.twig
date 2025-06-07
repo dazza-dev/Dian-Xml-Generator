@@ -1,0 +1,8 @@
+<Period AdmissionDate="{{ period.admision_date }}"
+    {% if period.retirement_date is defined and period.retirement_date is not null %}
+        RetirementDate="{{ period.retirement_date }}"
+    {% endif %}
+        SettlementStartDate="{{ period.settlement_start_date }}"
+        SettlementEndDate="{{ period.settlement_end_date }}"
+        WorkedTime="{{ (period.worked_time | number_format(2, '.', '')) }}"
+        IssueDate="{{ period.issue_date }}"></Period>

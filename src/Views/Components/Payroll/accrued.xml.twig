@@ -1,0 +1,178 @@
+<AccruedItems>
+    <Basic
+        WorkedDays="{{ accrued.worked_days }}"
+        SalaryAmount="{{ accrued.salary }}"></Basic>
+    {% if accrued.transportation_allowance or accrued.salary_viatics or accrued.non_salary_viatics %}
+        <Transportation
+            {% if accrued.transportation_allowance %}
+                TransportationAllowance="{{ accrued.transportation_allowance }}"
+            {% endif %}
+            {% if accrued.salary_viatics %}
+                TravelAllowanceSalary="{{ accrued.salary_viatics }}"
+            {% endif %}
+            {% if accrued.non_salary_viatics %}
+                TravelAllowanceNonSalary="{{ accrued.non_salary_viatics }}"
+            {% endif %}
+        ></Transportation>
+    {% else %}
+        <Transportation></Transportation>
+    {% endif %}
+    {# Day Overtime  #}
+    {% if accrued.HEDs %}
+        <DayOvertimeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'DayOvertime', 'extraHours': accrued.HEDs} %}
+        </DayOvertimeItems>
+    {% endif %}
+    {# Night Overtime  #}
+    {% if accrued.HENs %}
+        <NightOvertimeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'NightOvertime', 'extraHours': accrued.HENs} %}
+        </NightOvertimeItems>
+    {% endif %}
+    {# Night surcharge  #}
+    {% if accrued.HRNs %}
+        <NightSurchargeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'NightSurcharge', 'extraHours': accrued.HRNs} %}
+        </NightSurchargeItems>
+    {% endif %}
+    {# Day Time Overtime on Sunday and Holidays  #}
+    {% if accrued.HEDDFs %}
+        <HolidayDayOvertimeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'HolidayDayOvertime', 'extraHours': accrued.HEDDFs} %}
+        </HolidayDayOvertimeItems>
+    {% endif %}
+    {# Day Time Top-Up Hours on Sundays and Holidays #}
+    {% if accrued.HRDDFs %}
+        <HolidayDaySurchargeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'HolidayDaySurcharge', 'extraHours': accrued.HRDDFs} %}
+        </HolidayDaySurchargeItems>
+    {% endif %}
+    {# Night Time Overtime on Sunday and Holidays  #}
+    {% if accrued.HENDFs %}
+        <HolidayNightOvertimeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'HolidayNightOvertime', 'extraHours': accrued.HENDFs} %}
+        </HolidayNightOvertimeItems>
+    {% endif %}
+    {# Night Time Top-Up Hours on Sundays and Holidays #}
+    {% if accrued.HRNDFs %}
+        <HolidayNightSurchargeItems>
+            {% include 'Components/Payroll/extra_hours.xml.twig' with {'node': 'HolidayNightSurcharge', 'extraHours': accrued.HRNDFs} %}
+        </HolidayNightSurchargeItems>
+    {% endif %}
+    {# Common And Paid Vacations #}
+    {% if accrued.common_vacation or accrued.paid_vacation %}
+        <Vacations>
+            {% if accrued.common_vacation %}
+                {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'CommonVacationItem', 'items': accrued.common_vacation} %}
+            {% endif %}
+            {% if accrued.paid_vacation %}
+                {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'CompensatedVacationItem', 'items': accrued.paid_vacation} %}
+            {% endif %}
+        </Vacations>
+    {% endif %}
+    {# Service Bonus #}
+    {% if accrued.service_bonus %}
+        <ServiceBonuses>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'ServiceBonusItem', 'items': accrued.service_bonus} %}
+        </ServiceBonuses>
+    {% endif %}
+    {# Severance #}
+    {% if accrued.severance %}
+        <SeverancePayments>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'SeverancePaymentItem', 'items': accrued.severance} %}
+        </SeverancePayments>
+    {% endif %}
+    {# Leave For Work Disabilities #}
+    {% if accrued.work_disabilities %}
+        <DisabilityItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'DisabilityItem', 'items': accrued.work_disabilities} %}
+        </DisabilityItems>
+    {% endif %}
+    {# Work Licenses #}
+    {% if accrued.maternity_leave or accrued.paid_leave or accrued.non_paid_leave %}
+        <LeaveItems>
+            {% if accrued.maternity_leave %}
+                {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'MaternityPaternityLeaveItem', 'items': accrued.maternity_leave} %}
+            {% endif %}
+            {% if accrued.paid_leave %}
+                {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'PaidLeaveItem', 'items': accrued.paid_leave} %}
+            {% endif %}
+            {% if accrued.non_paid_leave %}
+                {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'NonPaidLeaveItem', 'items': accrued.non_paid_leave} %}
+            {% endif %}
+        </LeaveItems>
+    {% endif %}
+    {# Bonuses #}
+    {% if accrued.bonuses %}
+        <BonusItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'BonusItem', 'items': accrued.bonuses} %}
+        </BonusItems>
+    {% endif %}
+    {# Aid #}
+    {% if accrued.aid %}
+        <AidItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'AidItem', 'items': accrued.aid} %}
+        </AidItems>
+    {% endif %}
+    {# Legal Strike #}
+    {% if accrued.legal_strike %}
+        <LegalStrikeItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'LegalStrikeItem', 'items': accrued.legal_strike} %}
+        </LegalStrikeItems>
+    {% endif %}
+    {# Other Concepts #}
+    {% if accrued.other_concepts %}
+        <OtherConceptItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'OtherConceptItem', 'items': accrued.other_concepts} %}
+        </OtherConceptItems>
+    {% endif %}
+    {# Compensations #}
+    {% if accrued.compensations %}
+        <CompensationBenefitItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'CompensationBenefitItem', 'items': accrued.compensations} %}
+        </CompensationBenefitItems>
+    {% endif %}
+    {# EPCTV Bonuses #}
+    {% if accrued.epctv_bonuses %}
+        <EPCTVBonusItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'EPCTVBonusItem', 'items': accrued.epctv_bonuses} %}
+        </EPCTVBonusItems>
+    {% endif %}
+    {# Commissions #}
+    {% if accrued.commissions %}
+        <CommissionItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'CommissionItem', 'items': accrued.commissions} %}
+        </CommissionItems>
+    {% endif %}
+    {# Third Party Payments #}
+    {% if accrued.third_party_payments %}
+        <ThirdPartyPaymentItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'ThirdPartyPaymentItem', 'items': accrued.third_party_payments} %}
+        </ThirdPartyPaymentItems>
+    {% endif %}
+    {# Advances #}
+    {% if accrued.advances %}
+        <AdvanceItems>
+            {% include 'Components/Payroll/general_items.xml.twig' with {'node': 'AdvanceItem', 'items': accrued.advances} %}
+        </AdvanceItems>
+    {% endif %}
+    {# Other Items #}
+    {% if accrued.endowment %}
+        <EndowmentPayment>{{ accrued.endowment }}</EndowmentPayment>
+    {% endif %}
+    {% if accrued.sustenance_support %}
+        <SustenanceSupportPayment>{{ accrued.sustenance_support }}</SustenanceSupportPayment>
+    {% endif %}
+    {% if accrued.telecommuting %}
+        <TeleworkingPayment>{{ accrued.telecommuting }}</TeleworkingPayment>
+    {% endif %}
+    {% if accrued.withdrawal_bonus %}
+        <RetirementBonusPayment>{{ accrued.withdrawal_bonus }}</RetirementBonusPayment>
+    {% endif %}
+    {% if accrued.compensation %}
+        <IndemnificationPayment>{{ accrued.compensation }}</IndemnificationPayment>
+    {% endif %}
+    {% if accrued.refund %}
+        <ReimbursementPayment>{{ accrued.refund }}</ReimbursementPayment>
+    {% endif %}
+</AccruedItems>

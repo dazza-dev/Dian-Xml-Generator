@@ -1,0 +1,15 @@
+<GeneralInformation
+    Version="{{ xml_version_string }}"
+    Environment="{{ company.payroll_type_environment.code }}"
+    XMLType="{{ xml_type_code }}"
+    CUNE="===========CUNE==========="
+    CUNEAlgorithm="{{ typeDocument.cufe_algorithm }}"
+    GenerationDate="{{ (period.issue_date | default(now | date('Y-m-d'))) }}"
+    GenerationTime="{{ (time | default(now | date('H:i:s'))) }}-05:00"
+    TRM="1"
+    PayrollPeriodID="{{ request.payroll_period_id }}"
+    CurrencyCode="{{ company.type_currency.code }}"
+></GeneralInformation>
+{% if request.notes %}
+    <Notes>{{ request.notes }}</Notes>
+{% endif %}

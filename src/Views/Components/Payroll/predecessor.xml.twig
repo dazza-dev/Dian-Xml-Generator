@@ -1,0 +1,6 @@
+{% set predecessor_tag_name = (predecessor_action_type == "delete") ? "DeletingPredecessor" : "ReplacingPredecessor" %}
+<{{ predecessor_tag_name }}
+    PredecessorNumber="{{ predecessor.predecessor_number }}"
+    PredecessorCUNE="{{ predecessor.predecessor_cune }}"
+    PredecessorGenerationDate="{{ predecessor.predecessor_issue_date }}"
+></{{ predecessor_tag_name }}>

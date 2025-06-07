@@ -1,0 +1,7 @@
+<XMLSequenceNumber
+    {% if request.worker_code is defined and request.worker_code is not null %}
+        WorkerCode="{{ request.worker_code }}"
+    {% endif %}
+    Prefix="{{ request.prefix }}"
+    Consecutive="{{ request.consecutive }}"
+    Number="{{ (request.prefix ~ request.consecutive) }}"></XMLSequenceNumber>
